@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" href="logo.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="1.css" title="CSS1" ID="CSS1">
+		<link rel="stylesheet" type="text/css" href="2.css" title="CSS2" ID="CSS2"DISABLED>
+		<link rel="stylesheet" type="text/css" href="3.css" title="CSS3" ID="CSS3"DISABLED>
+		<title>留言板</title>
+		<style>
+		</style>
+		<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+		<script>// 导航切换
+			$(function(){
+				$(".nav ul li").click(function(){
+					$(this).addClass("navClicked").siblings().removeClass("navClicked");
+				});
+			});
+		</script>
+		<script>// 开关灯
+			function changeCss(id)
+			{
+				for(var i=1;i<4;i++)
+				{
+					if(i==id)
+						document.getElementById("CSS"+i).disabled= false;
+					else
+						document.getElementById("CSS"+i).disabled= true;
+				}
+			}
+		</script>
+		<script>//验证留言表单
+			function checkForm() {
+				var x = document.forms["myForm"]["留言信息"].value;
+				if (x == null || x == "") {
+					alert("需要输入信息。");
+					const fo = 0;
+					return false;
+				}
+				else{
+					const fo = 1;
+				}
+			}
+		</script>
+		<script>//返回顶部
+			// 当网页向下滑动 20px 出现"返回顶部" 按钮
+			window.onscroll = function() {scrollFunction()};
+ 
+			function scrollFunction() {
+				console.log(121);
+				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+					document.getElementById("myBtn").style.display = "block";
+				}
+				else {
+					document.getElementById("myBtn").style.display = "none";
+				}
+			}
+			// 点击按钮，返回顶部
+			function topFunction() {
+				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = 0;
+			}
+		</script>
+		<script>//提交确认并于新窗口打开本表单页面
+			function sumbit_form(){
+				var gnl=confirm("是否确定提交?");
+				if (gnl==true){
+					alert("已提交！");
+					window.open('board.html');
+					return true;
+				}else{
+					return false;
+				}
+			}
+		</script>
+		<script>//留言查询
+			var xmlhttp;
+			function search(){
+				var name = document.getElementById("name").value;
+				xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState==4 && xmlhttp.status==200){
+						document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+					}
+				}
+				xmlhttp.open("GET","/search?fname="+name,true);
+				xmlhttp.send();
+			};
+		</script>
+		<script>//留言搜索提示
+			function showHint(str){
+				xmlhttp = new XMLHttpRequest();	
+				xmlhttp.onreadystatechange = function(){
+					if(xmlhttp.readyState==4 && xmlhttp.status==200){
+						document.getElementById("txtHint").innerHTML = xmlhttp.responseText
+					}
+				}		
+				xmlhttp.open("GET","get_hint?fname="+str,true);
+				xmlhttp.send();
+			}
+		</script>
+	</head>
+	<body>
+		<div class="nav">
+			<ul>
+				<a href="http://www.njnu.edu.cn/"><img style="float:left;" src="images/nnu.png" width="140" height="40"></a>
+				<a href="http://hy.njnu.edu.cn/"><img style="float:right; margin-right:15px;" src="images/cmse.png" width="40" height="40"></a>
+				<li><a href="zzq.html">首页</a></li>
+				<li>获奖荣誉</li>
+				<li>科学研究</li>
+				<li class="navClicked"><a href="board.html">留言板</a></li>
+				<li><a href="javascript:changeCss(1)"><img src="images/eg_bulbon.png" width="20" height="30"></a></li>
+				<li><a href="javascript:changeCss(2)"><img src="images/eg_bulboff.png" width="20" height="30"></a></li>
+				<li><a href="javascript:changeCss(3)">图片</a></li>
+				<p style="display:inline">
+					<input type="text" name="name" id="name" onkeyup="showHint(this.value)" class="search" placeholder="搜索留言">
+					<input type="image" src="images/search.png" class="btn" onclick="search()">
+				</p>	
+			</ul>
+		</div>
+		<h1 style="text-align:center">留言板</h1>
+		<div>
+			<form style="text-align:center" name="myForm" action="http://localhost:1000" style="width:300px;height:300px" onsubmit="return sumbit_form()" method="get" id="Form">
+				<textarea rows="1" cols="90" placeholder="请输入姓名..." required="required" name="name" ></textarea><br><br>
+				<textarea rows="1" cols="90" placeholder="请输入邮箱..." required="required" name="Email_address" ></textarea><br><br>
+				<textarea rows="15" cols="90" placeholder="请输入留言..." required="required" name="Text" ></textarea><br><br>
+				<input type="reset" value="清空">
+				<input type="submit" value="提交">
+			</form>
+		</div>
+
+		<!--留言查询功能-->
+		<br>
+		<div class="nav">
+		<p style="text-align:center">留言搜索提示：<span style="color:grey" id="txtHint"></span></p>
+		<p style="text-align:center"></p>
+		</div>
+		<br>
+		<div style="text-align:center" id="myDiv" class="nav"><h3>查询结果<h3></div>
+
+		<button onclick="topFunction()" id="myBtn" title="回顶部">返回顶部</button>
+
+		<div class="footer">
+			<p>&copy;27190212</p>			
+			<li id="datetime">
+				<script>
+					setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);
+				</script>
+			</li>
+		</div>
+	</body>
+</html>
