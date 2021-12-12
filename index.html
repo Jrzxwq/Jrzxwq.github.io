@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" href="logo.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="1.css" title="CSS1" ID="CSS1">
+		<link rel="stylesheet" type="text/css" href="2.css" title="CSS2" ID="CSS2"DISABLED>
+		<link rel="stylesheet" type="text/css" href="3.css" title="CSS3" ID="CSS3"DISABLED>
+		<title>周子清</title>
+		<style>
+		</style>
+		<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+		<script>// 导航切换
+			$(function(){
+				$(".nav ul li").click(function(){
+					$(this).addClass("navClicked").siblings().removeClass("navClicked");
+				});
+			});
+		</script>
+		<script>// 开关灯
+			function changeCss(id)
+			{
+				for(var i=1;i<4;i++)
+				{
+					if(i==id)
+						document.getElementById("CSS"+i).disabled= false;
+					else
+						document.getElementById("CSS"+i).disabled= true;
+				}
+			}
+		</script>
+		<script>//验证留言表单
+			function validateForm() {
+				var x = document.forms["myForm"]["留言信息"].value;
+				if (x == null || x == "") {
+					alert("需要输入信息。");
+					return false;
+				}
+			}
+		</script>
+		<script>//返回顶部
+			// 当网页向下滑动 20px 出现"返回顶部" 按钮
+			window.onscroll = function() {scrollFunction()};
+ 
+			function scrollFunction() {console.log(121);
+				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+					document.getElementById("myBtn").style.display = "block";
+				} else {
+					document.getElementById("myBtn").style.display = "none";
+				}
+			}
+			// 点击按钮，返回顶部
+			function topFunction() {
+				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = 0;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="nav">
+			<ul>
+				<a href="http://www.njnu.edu.cn/"><img style="float:left;" src="images/nnu.png" width="140" height="40"></a>
+				<a href="http://hy.njnu.edu.cn/"><img style="float:right; margin-right:15px;" src="images/cmse.png" width="40" height="40"></a>
+				<li class="navClicked"><a href="zzq.html">首页</a></li>
+				<li>获奖荣誉</li>
+				<li>科学研究</li>
+				<li><a href="board.html">留言板</a></li>
+				<li><a href="javascript:changeCss(1)"><img src="images/eg_bulbon.png" width="20" height="30"></a></li>
+				<li><a href="javascript:changeCss(2)"><img src="images/eg_bulboff.png" width="20" height="30"></a></li>
+				<li><a href="javascript:changeCss(3)">图片</a></li>
+				<form action="" style="display:inline">
+					<input type="text" class="search" placeholder="搜索">
+					<input type="image" src="images/search.png" class="btn">
+				</form>	
+			</ul>
+		</div>
+		<div>
+			<h2><b>基本信息</b></h2>
+			<ul class="articles">
+				<img class="middle" src="images/0001.jpg" width="120" height="160">
+				<h3>周子清</h3>
+				<p class="meta-info">
+					<span class="meta-cate">NNU</span>
+					<span class="meta-cate">CMSE</span>
+					<span class="meta-cate">GIS</span>
+                </p>
+                <div class="article-info">
+                    <p class="description">
+					<p class="big">
+					性别：男&emsp;&emsp;民族：汉族&emsp;&emsp;生日：2000/9/19&emsp;&emsp;产地：广西南宁<br>
+					就读院校：南京师范大学&emsp;&emsp;专业：海洋资源开发技术&emsp;&emsp;政治面貌：共青团员<br>
+					邮箱：27190212@nnu.edu.cn&emsp;&emsp;手机号：15651738310&emsp;&emsp;QQ：114400930<br>
+					</p>
+					<table border="1" style="margin-top:5px;">
+						<tr>
+							<th>兴趣爱好</th>
+							<td>篮球</td>
+							<td>王者荣耀</td>
+							<td><a href="https://forzamotorsport.net/en-US/games/fh">Forza Horizon</a></td>
+						</tr>
+					</table>
+                </div>
+			</ul>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div>
+			<h2 style="margin-top:15px;"><b>教育经历</b></h2>
+			<p class="describe">
+				2016/09-2019/06，<a href="http://www.nnez.cn/index.htm">南宁市第二中学</a>；<br>
+				2019/09-至今，<a href="http://www.njnu.edu.cn/">南京师范大学</a>，<a href="http://hy.njnu.edu.cn/">海洋科学与工程学院</a>。
+			</p>
+			<h2><b>学干经历</b></h2>
+			<p class="describe">	
+				海洋科学与工程学院学生会新闻媒体中心干事；<br>
+				海洋科学与工程学院学生会科协部长；<br>
+				海洋科学与工程学院学生会副主席。
+			</p>
+			<h2><b>实践经历</b></h2>
+			<p class="describe">
+				主持第七届“互联网+”赛事项目"滩涂管家——为你提供最好的滩涂立体监测服务"；<br>
+				参与校级大创项目"温排水对海洋生态系统的影响：以田湾核电站邻近区域海洋底栖生物研究为例"；<br>
+				参加2021地理信息技术与应用技能大赛入围决赛。<br>
+			</p>
+		</div>
+		<hr>
+		<div class="case">
+			<div class="part" id="part">
+				<div id="scroll1">
+					<ul>
+						<li>祝国庆快乐</li>
+						<li>10月16日决赛</li>
+						<li>没有什么特殊的事件</li>
+					</ul>
+				</div>
+				<div id="scroll2"></div>
+			</div>
+		</div>
+		<button onclick="topFunction()" id="myBtn" title="回顶部">返回顶部</button>
+		<hr>
+		<div class="footer">
+			<p>&copy;27190212</p>			
+			<li id="datetime">
+				<script>
+					setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);
+				</script>
+			</li>
+		</div>
+		<script type="text/javascript">//自动滚动栏
+
+			var PartArea = document.getElementById('part');
+			var Scroll1 = document.getElementById('scroll1');
+			var Scroll2 = document.getElementById('scroll2');
+
+			Scroll2.innerHTML = Scroll1.innerHTML;
+
+			function roll() {
+				if(Scroll2.offsetHeight - PartArea.scrollTop <= 0) {
+					PartArea.scrollTop -= Scroll1.offsetHeight;
+				} else {
+					PartArea.scrollTop++;
+				}
+			}
+			var StopRoll = setInterval(roll, 60);
+
+			PartArea.onmouseover = function () {
+				clearInterval(StopRoll);
+			}
+			PartArea.onmouseout = function () {
+				StopRoll = setInterval(roll, 60);
+			}
+		</script>
+	</body>
+</html>
